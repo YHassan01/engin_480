@@ -75,6 +75,7 @@ print(tasks.keys().mapping['lunch'])
 print(tasks.keys().mapping['afternoon'])
 print(tasks.keys().mapping['evening'])
 print(tasks.keys().mapping['evening'])
+print(tasks.keys().mapping['evening'])
 
 
 print('done')
