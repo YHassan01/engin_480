@@ -1,15 +1,50 @@
-# I want to choose the Sea Impact Offshore Wind Map project because 
-it aligns closely with my interests in renewable energy and data 
-analysis. As one of our projects was renewable energy I find it 
-really cool to work with real-world data on offshore wind farms, 
-both exciting and relevant. The project allows me to develop skills 
-in data extraction, processing, and visualization, which are essential 
-for analyzing and understanding complex energy systems. Additionally, the 
-hands-on experience of working with numpy arrays and generating meaningful 
-plots will strengthen my programming and analytical capabilities. This project
- will provide a valuable foundation for my future work in energy technology and 
- sustainability.
+import numpy as np
+import matplotlib.pyplot as plt
 
+class WindFarmBoundary:
+    def __init__(self, name, coordinates):
+        """
+        Initializes the WindFarmBoundary object.
 
-Best, 
-Yoseph Hassan
+        Args:
+            name (str): Name of the wind farm.
+            coordinates (list of tuples): List of (longitude, latitude) pairs.
+        """
+        self.name = name
+        self.coordinates = coordinates
+        self.array = np.array(coordinates)
+
+    def get_array(self):
+        return self.array
+
+    def plot(self):
+        """
+        Plots the boundary using matplotlib.
+        """
+        x, y = self.array[:, 0], self.array[:, 1]
+        plt.figure(figsize=(6, 6))
+        plt.plot(x, y, marker='o', linestyle='-', color='blue')
+        plt.fill(x, y, color='skyblue', alpha=0.3)
+        plt.title(f"Boundary of {self.name}")
+        plt.xlabel("Longitude")
+        plt.ylabel("Latitude")
+        plt.grid(True)
+        plt.axis("equal")
+        plt.show()
+
+# Example usage
+eystrasalt_coords = [
+    (17.004, 57.008),
+    (17.005, 57.005),
+    (17.005, 57.001),
+    (17.005, 56.998),
+    (17.006, 56.994),
+    (17.004, 57.008)  # close the polygon
+]
+
+eystrasalt = WindFarmBoundary("Eystrasalt", eystrasalt_coords)
+print("Numpy array of boundary:")
+print(eystrasalt.get_array())
+
+# Plot
+eystrasalt.plot()
